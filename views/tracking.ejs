@@ -119,6 +119,7 @@
 
 <section class="mt-5">
   <div class="container">
+    <% if(tracker) {%>
     <div class="row parcel-wrap">
       <div class="col-12 comp process">
         <div class="stepper-wrap">
@@ -273,5 +274,8 @@
         ></script>
       </div>
     </div>
+    <%}else {%>
+    <p class="text-center my-4">Tracker Not Found</p>
+    <%}%>
   </div>
 </section>
