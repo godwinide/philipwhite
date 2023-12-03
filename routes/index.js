@@ -25,10 +25,14 @@ router.get("/tracking", async (req, res) => {
     try {
         const trackingNumber = req.query.q.trim();
         const tracker = await Tracker.findOne({ trackingNumber });
-        const statusN = statusNumber[tracker.status];
+        let statusN = 1;
+        if (tracker) {
+            statusN = statusNumber[tracker.status];
+        }
         return res.render("tracking", { layout: "layout", req, tracker, statusN });
     }
     catch (err) {
+        console.log(err)
         return res.redirect("/");
     }
 });
