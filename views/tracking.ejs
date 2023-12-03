@@ -1,0 +1,277 @@
+<style>
+  header {
+    background-color: #000000 !important;
+  }
+  .comp {
+    border: 2px solid #d0d0d0;
+    border-radius: 10px;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+  .parcel-details {
+  }
+  .parcel-details h3 {
+    font-size: 1.2em;
+    font-weight: bolder;
+    margin: 1em 0;
+  }
+  .parcel-details h4 {
+    font-size: 0.9em;
+    font-weight: bolder;
+    margin: 0;
+    color: #000000;
+  }
+  .parcel-details p {
+    margin: 0;
+    color: rgb(66, 66, 66);
+    font-size: 0.8em;
+  }
+  .parcel-details .item {
+    margin-bottom: 0.7em;
+  }
+
+  .process {
+    padding: 1em;
+    padding-top: 2em;
+  }
+
+  .stepper-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .stepper-wrap i {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background-color: #9e9e9e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .stepper-wrap .active {
+    background-color: #e84545 !important;
+    color: #fff !important;
+  }
+
+  .stepper-wrap .step {
+    position: relative;
+  }
+
+  .stepper-wrap .line {
+    height: 4px;
+    background-color: #9e9e9e;
+    width: 20%;
+  }
+
+  .step-text {
+    position: absolute;
+    bottom: -3em;
+    left: -1.5em;
+    width: 6.5em;
+  }
+
+  .step-text p {
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+  .ship-status {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1em;
+    text-align: center;
+  }
+  hr {
+    margin-top: 4em;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .step-text p {
+      font-size: 0.6em;
+    }
+    .stepper-wrap {
+      width: 90%;
+    }
+    .ship-status {
+      font-size: 0.8em;
+    }
+    .parcel-details h3 {
+      font-size: 1em;
+      font-weight: bold;
+    }
+    .parcel-details h4 {
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    .parcel-details p {
+      margin: 0;
+      color: rgb(66, 66, 66);
+      font-size: 0.8em;
+    }
+  }
+</style>
+
+<section class="mt-5">
+  <div class="container">
+    <div class="row parcel-wrap">
+      <div class="col-12 comp process">
+        <div class="stepper-wrap">
+          <div class="step">
+            <i class="fas fa-refresh <%= statusN >= 1 && 'active'%>"></i>
+            <div class="step-text">
+              <p>Processing</p>
+            </div>
+          </div>
+          <div class="line <%= statusN > 1 && 'active'%>"></div>
+          <div class="step">
+            <i class="fas fa-archive <%= statusN >= 2 && 'active'%>"></i>
+            <div class="step-text">
+              <p>Picked Up</p>
+            </div>
+          </div>
+          <div class="line <%= statusN > 2 && 'active'%>"></div>
+          <div class="step">
+            <i class="fas fa-truck <%= statusN >= 3 && 'active'%>"></i>
+            <div class="step-text">
+              <p>Shipped</p>
+            </div>
+          </div>
+          <div class="line <%= statusN > 3 && 'active'%>"></div>
+          <div class="step">
+            <i class="fas fa-truck acive <%= statusN >= 4 && 'active'%>"></i>
+            <div class="step-text">
+              <p>Out for delivery</p>
+            </div>
+          </div>
+          <div class="line <%= statusN > 4 && 'active'%>"></div>
+          <div class="step">
+            <i class="bi-check-circle-fill <%= statusN >= 5 && 'active'%>"></i>
+            <div class="step-text">
+              <p>Delivered</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <p class="ship-status">Your Shipment is <%= tracker.status %></p>
+      </div>
+      <div class="col-lg-6 col-md-6 comp parcel-details">
+        <h3>Parcel Information</h3>
+        <div class="row">
+          <div class="item col-6">
+            <h4>Tracking Number</h4>
+            <p><%= tracker.trackingNumber %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Parcel</h4>
+            <p><%= tracker.parcel %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Shipment Type</h4>
+            <p><%= tracker.shipmentType %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Shipment Mode</h4>
+            <p><%= tracker.shipmentMode %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Current Location</h4>
+            <p><%= tracker.currentLocation %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Carrier</h4>
+            <p><%= tracker.carrier %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Packages</h4>
+            <p><%= tracker.packages %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Weight</h4>
+            <p><%= tracker.weight %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Cubic</h4>
+            <p><%= tracker.cubic %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Origin Port</h4>
+            <p><%= tracker.originPort %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Destination Port</h4>
+            <p><%= tracker.destinationPort %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Sender's Name</h4>
+            <p><%= tracker.senderName %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Receiver's Name</h4>
+            <p><%= tracker.receiverName %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Sender's Number</h4>
+            <p><%= tracker.senderNumber %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Receiver's Phone Number</h4>
+            <p><%= tracker.receiverNumber %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Sender's Email</h4>
+            <p><%= tracker.senderEmail %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Receiver's Email</h4>
+            <p><%= tracker.receiverEmail %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Departure Date</h4>
+            <p><%= tracker.departureDate %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Estimated Delivery Date</h4>
+            <p><%= new Date(tracker.deliveryDate).toDateString() %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Delivery Address</h4>
+            <p><%= tracker.deliveryAddress %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Payment Method</h4>
+            <p><%= tracker.paymentMethod %></p>
+          </div>
+          <div class="item col-6">
+            <h4>Additional Notes</h4>
+            <p><%= tracker.message %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <iframe
+          width="100%"
+          height="400"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          id="gmap_canvas"
+          src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=<%=tracker.currentLocation%>&amp;t=h&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        ></iframe>
+        <a href="https://www.easybooking.eu/produkte/julia-hotelsoftware"
+          >Hotelsoftware mit Channelmanager</a
+        >
+        <script
+          type="text/javascript"
+          src="https://embedmaps.com/google-maps-authorization/script.js?id=6ca9171d63ddc71265fe8a98c66a2184d7a9c153"
+        ></script>
+      </div>
+    </div>
+  </div>
+</section>

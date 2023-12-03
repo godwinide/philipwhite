@@ -1,0 +1,74 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <div class="d-flex align-items-center align-self-start">
+                  <h3 class="mb-0"><%= trackers.length %></h3>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="icon icon-box-success">
+                  <span class="mdi mdi-key icon-item"></span>
+                </div>
+              </div>
+            </div>
+            <h6 class="text-muted font-weight-normal">Trackers</h6>
+            <a href="/credentials" class="btn btn-secondary">See all</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="grid-margin">
+        <div class="container">
+          <a href="/create-tracker" class="btn btn-success my-3"
+            >Add new tracker
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-white">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Trackers</h4>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-white">Parcel</th>
+                    <th class="text-white">Tracking ID</th>
+                    <th class="text-white">Status</th>
+                    <th class="text-white">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% trackers.reverse().map(tr => {%>
+                  <tr>
+                    <td class="text-white"><%= tr.parcel %></td>
+                    <td class="text-white"><%= tr.trackingNumber %></td>
+                    <td class="text-white"><%= tr.status %></td>
+                    <td class="text-white">
+                      <a
+                        href="/manage-tracker/<%=tr.trackingNumber%>"
+                        class="btn btn-primary"
+                        >Manage</a
+                      >
+                    </td>
+                  </tr>
+                  <%})%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

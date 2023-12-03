@@ -1,0 +1,238 @@
+<div class="main-panel">
+  <div class="content-wrapper">
+    <h1 class="text-center">Add a new Tracker</h1>
+
+    <form
+      action="/create-tracker"
+      method="post"
+      class="form mt-4"
+      style="max-width: 700px; margin: 4em auto"
+    >
+      <%-include("./partials/messages")%>
+      <div class="row">
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Tracking number"
+            name="trackingNumber"
+            class="form-control text-white"
+            value="<%= typeof trackingNumber != 'undefined'? trackingNumber : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Parcel name"
+            name="parcel"
+            class="form-control text-white"
+            value="<%= typeof parcel != 'undefined'? parcel : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Sender's name"
+            name="senderName"
+            class="form-control text-white"
+            value="<%= typeof senderName != 'undefined'? senderName : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Receiver's name"
+            name="receiverName"
+            class="form-control text-white"
+            value="<%= typeof receiverName != 'undefined'? receiverName : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Sender's Phone Number"
+            name="senderNumber"
+            class="form-control text-white"
+            value="<%= typeof senderNumber != 'undefined'? senderNumber : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Receiver's Phone Number"
+            name="receiverNumber"
+            class="form-control text-white"
+            value="<%= typeof receiverNumber != 'undefined'? receiverNumber : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Sender's Email"
+            name="senderEmail"
+            class="form-control text-white"
+            value="<%= typeof senderEmail != 'undefined'? senderEmail : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Receiver's Email"
+            name="receiverEmail"
+            class="form-control text-white"
+            value="<%= typeof receiverEmail != 'undefined'? receiverEmail : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Origin Port"
+            name="originPort"
+            class="form-control text-white"
+            value="<%= typeof originPort != 'undefined'? originPort : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Destination Port"
+            name="destinationPort"
+            class="form-control text-white"
+            value="<%= typeof destinationPort != 'undefined'? destinationPort : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Delivery Address"
+            name="deliveryAddress"
+            class="form-control text-white"
+            value="<%= typeof deliveryAddress != 'undefined'? deliveryAddress : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Current Parcel Location"
+            name="currentLocation"
+            class="form-control text-white"
+            value="<%= typeof currentLocation != 'undefined'? currentLocation : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Weight"
+            name="weight"
+            class="form-control text-white"
+            value="<%= typeof weight != 'undefined'? weight : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Cubic"
+            name="cubic"
+            class="form-control text-white"
+            value="<%= typeof cubic != 'undefined'? cubic : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Packages"
+            name="packages"
+            class="form-control text-white"
+            value="<%= typeof packages != 'undefined'? packages : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <input
+            type="text"
+            placeholder="Carrier"
+            name="carrier"
+            class="form-control text-white"
+            value="<%= typeof carrier != 'undefined'? carrier : '' %>"
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <label for="date">Departure Date</label>
+          <input
+            id="date"
+            type="datetime-local"
+            placeholder="Date Required By"
+            name="departureDate"
+            class="form-control text-white"
+            value="<%= typeof departureDate != 'undefined'? departureDate : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <label for="date">Expected Delivery Date</label>
+          <input
+            id="date"
+            type="datetime-local"
+            placeholder="Date Required By"
+            name="deliveryDate"
+            class="form-control text-white"
+            value="<%= typeof deliveryDate != 'undefined'? deliveryDate : '' %>"
+            required
+          />
+        </div>
+        <div class="mb-3 col-6">
+          <label for="">Shipment Mode</label>
+          <select required name="shipmentMode" class="form-control">
+            <option value="Air Freight">Air Freight</option>
+            <option value="Land Shipping">Land Shipping</option>
+            <option value="Sea Transport">Sea Transport</option>
+          </select>
+        </div>
+        <div class="mb-3 col-6">
+          <label for="">Shipment Type</label>
+          <select required name="shipmentType" class="form-control">
+            <option value="Air Freight">Air Freight</option>
+            <option value="International Shipping">International Shipping</option>
+            <option value="Truckload">Truckload</option>
+            <option value="Van Move">Van Move</option>
+          </select>
+        </div>
+        <div class="mb-3 col-6">
+          <label for="">Payment Method</label>
+          <select required name="paymentMethod" class="form-control">
+            <option value="Cash On Delivery">Cash On Delivery</option>
+            <option value="Cheque">Cheque</option>
+            <option value="BACS">BACS</option>
+          </select>
+        </div>
+        <div class="mb-3 col-12">
+          <label for="">Shipment Status</label>
+          <select required name="status" class="form-control">
+            <option value="Pending">Pending</option>
+            <option value="Picked Up">Picked Up</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Returned">Returned</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="mb-3 col-12">
+          <label for="">Message</label>
+          <textarea name="message" id="" cols="30" rows="10" class="form-control"><%= typeof message != 'undefined'? message : '' %>
+          </textarea>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-success">Create Tracker</button>
+        </div>
+      </form>
+      </div>
+  </div>
+</div>

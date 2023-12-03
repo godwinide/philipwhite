@@ -1,0 +1,68 @@
+<div class="main-panel">
+    <div class="content-wrapper">
+      <h1 class="text-center">Add a new Tracker</h1>
+  
+      <form
+        action="/manage-tracker/<%=tracker.trackingNumber%>"
+        method="post"
+        class="form mt-4"
+        style="max-width: 700px; margin: 4em auto"
+      >
+        <%-include("./partials/messages")%>
+        <div class="row">
+          <div class="mb-3 col-6">
+            <input
+              type="text"
+              placeholder="Tracking number"
+              name="trackingNumber"
+              class="form-control text-white"
+              value="<%= typeof tracker.trackingNumber != 'undefined'? tracker.trackingNumber : '' %>"
+              required
+            />
+          </div>
+          <div class="mb-3 col-6">
+            <input
+              type="text"
+              placeholder="Current Parcel Location"
+              name="currentLocation"
+              class="form-control text-white"
+              value="<%= typeof tracker.currentLocation != 'undefined'? tracker.currentLocation : '' %>"
+              required
+            />
+          </div>
+          <div class="mb-3 col-6">
+            <label for="">Shipment Status</label>
+            <select required name="status" class="form-control">
+              <option value="<%=tracker.status%>">select</option>
+              <option value="Pending">Pending</option>
+              <option value="Picked Up">Picked Up</option>
+              <option value="In Transit">In Transit</option>
+              <option value="Out for Delivery">Out for Delivery</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Returned">Returned</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="mb-3 col-12">
+            <label for="">Message</label>
+            <textarea name="message" id="" cols="30" rows="10" class="form-control"><%= typeof tracker.message != 'undefined'? tracker.message : '' %>
+            </textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-success">Update Tracker</button>
+          </div>
+        </form>
+        </div>
+        <form
+        action="/delete-tracker"
+        method="post"
+        class="form mt-4"
+        style="max-width: 700px; margin: 4em auto"
+      >
+      <h4>Delete Tracker</h4>
+        <input type="hidden" name="trackingNumber" value="<%=tracker.trackingNumber%>">
+        <button class="btn btn-danger">Delete Tracker</button>
+      </form>
+    </div>
+  </div>
+  
